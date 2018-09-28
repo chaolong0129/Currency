@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findviews();
+        findViews();
         setInitValue();
     }
 
@@ -27,35 +27,35 @@ public class MainActivity extends AppCompatActivity {
     {
         lblUSMsg.setText(""+US_EXT_RATE);
     }
-    private void findviews() {
+    private void findViews() {
         ntd = findViewById(R.id.edntd);
         lblUSMsg = findViewById(R.id.tvUSMsg);
     }
 
-    public void CalCurrency(View view)
+    public void calCurrency(View view)
     {
         if (ntd.length() == 0)
-            ShowDialogWarning();
+            showDialogWarning();
         else
-            ShowDialogResult();
+            showDialogResult();
     }
 
-    private void ShowDialogResult() {
+    private void showDialogResult() {
         int amount = Integer.parseInt(ntd.getText().toString());
         BigDecimal result_us = BigDecimal.valueOf(amount / US_EXT_RATE);
 
         new AlertDialog.Builder(this)
-                .setTitle("Result")
-                .setMessage("USD is " + String.format("%.4f", result_us))
-                .setPositiveButton("OK", null)
+                .setTitle(R.string.result)
+                .setMessage(getString(R.string.usd_is) + String.format("%.4f", result_us))
+                .setPositiveButton(R.string.ok, null)
                 .show();
     }
 
-    private void ShowDialogWarning() {
+    private void showDialogWarning() {
         new AlertDialog.Builder(this)
-                .setTitle("Problem")
-                .setMessage("Please enter you NTD amount")
-                .setPositiveButton("OK", null)
+                .setTitle(R.string.problem)
+                .setMessage(R.string.enter_your_ntd_amount)
+                .setPositiveButton(R.string.ok, null)
                 .show();
     }
 }
